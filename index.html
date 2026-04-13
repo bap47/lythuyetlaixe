@@ -28,6 +28,7 @@
     --radius:12px;--radius-sm:8px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:hidden;max-width:100%}
   body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
 
   header{background:var(--blue-head);padding:1.25rem 2rem;position:sticky;top:0;z-index:10}
@@ -105,7 +106,8 @@
   /* Bảng tốc độ */
   .speed-section{margin-top:10px}
   .speed-subtitle{font-size:12px;font-weight:700;color:var(--blue-head);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.05em}
-  .speed-table{width:100%;border-collapse:collapse;font-size:13px}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm)}
+  .speed-table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
   .speed-table th{background:var(--blue-head);color:#fff;font-weight:700;padding:8px 10px;text-align:center;border:1px solid #90CAF9;white-space:nowrap}
   .speed-table th.left{text-align:left}
   .speed-table td{padding:8px 10px;border:1px solid #BBDEFB;vertical-align:middle}
@@ -121,7 +123,7 @@
   /* Bảng liên đới xe – biển báo */
   .sign-section{margin-top:10px}
   .sign-subtitle{font-size:12px;font-weight:700;color:var(--blue-head);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.05em}
-  .sign-table{width:100%;border-collapse:collapse;font-size:12px}
+  .sign-table{width:100%;border-collapse:collapse;font-size:12px;min-width:380px}
   .sign-table th{background:var(--blue-head);color:#fff;font-weight:700;padding:7px 8px;text-align:center;border:1px solid #90CAF9;line-height:1.3}
   .sign-table th.left{text-align:left;min-width:130px}
   .sign-table td{padding:7px 8px;border:1px solid #BBDEFB;vertical-align:middle;text-align:center}
@@ -145,7 +147,7 @@
   .step-num{width:26px;height:26px;border-radius:50%;background:var(--blue-head);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
   .step-body{flex:1}
   .step-body strong{color:var(--blue-head)}
-  .prio-table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+  .prio-table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;min-width:300px}
   .prio-table th{background:var(--blue-head);color:#fff;padding:6px 10px;text-align:left;border:1px solid #90CAF9}
   .prio-table td{padding:6px 10px;border:1px solid #BBDEFB;vertical-align:top;font-size:12px}
   .prio-table tr:nth-child(even) td{background:#F0F8FF}
@@ -181,9 +183,10 @@
   .th-body{font-size:12px;padding:8px 10px}
   .step-item{font-size:12px;padding:8px 10px}
   .step-num{width:22px;height:22px;font-size:11px}
-  .speed-table{font-size:11px}
-  .speed-table th{padding:6px 6px;font-size:11px}
-  .speed-table td{padding:6px 6px}
+  .speed-table{font-size:11px;table-layout:fixed;width:100%}
+  .speed-table th{padding:5px 4px;font-size:10px;word-break:keep-all}
+  .speed-table td{padding:5px 4px;word-break:break-word}
+  .xe-icon-card{min-width:120px}
   .section-label{font-size:10px}
   .done-btn{font-size:12px;padding:7px 14px}
   .progress-bar-wrap{padding:0.75rem 1rem;gap:10px}
@@ -502,7 +505,7 @@ function buildSpeedHTML(){
 
   // TH1
   h+=`<div class="speed-subtitle">${t1.label}</div>`;
-  h+=`<table class="speed-table"><thead><tr>
+  h+=`<div class="table-scroll"><table class="speed-table"><thead><tr>
     <th class="left">Loại xe</th>
     <th>Đường đôi</th>
     <th>Đường 2 chiều</th>
@@ -514,7 +517,7 @@ function buildSpeedHTML(){
       h+=`<tr><td>${r.xe}</td><td class="center">${r.duongDoi}</td><td class="center">${r.duongHaiChieu}</td></tr>`;
     }
   });
-  h+=`</tbody></table>`;
+  h+=`</tbody></table></div>`;
 
   // TH2
   h+=`<div class="speed-subtitle" style="margin-top:16px">${t2.label}</div>`;
@@ -560,14 +563,14 @@ function buildAgeHTML(){
     {tuoi:"24",xe:"Hạng D1, D2, C1E, CE"},
     {tuoi:"27",xe:"Hạng D, DE"},
   ];
-  let h=`<table class="speed-table" style="margin-top:10px"><thead><tr>
+  let h=`<div class="table-scroll"><table class="speed-table" style="margin-top:10px"><thead><tr>
     <th style="width:80px">Tuổi</th>
     <th class="left">Loại xe được điều khiển</th>
   </tr></thead><tbody>`;
   rows.forEach(r=>{
     h+=`<tr><td class="center">${r.tuoi}</td><td>${r.xe}</td></tr>`;
   });
-  h+=`</tbody></table>`;
+  h+=`</tbody></table></div>`;
   return h;
 }
 
@@ -583,7 +586,7 @@ function buildSaHinh19HTML(){
   const steps=[
     {n:"1",html:"<strong>Ưu tiên đường sắt</strong> — Các xe phải dừng cách mép đường ray gần nhất ít nhất <strong>5 m</strong>"},
     {n:"2",html:"<strong>Ưu tiên xe đã vào giao lộ</strong> — Xe đã vào giao lộ trước được quyền đi trước"},
-    {n:"3",html:`<strong>Ưu tiên xe ưu tiên</strong><table class="prio-table" style="margin-top:8px"><thead><tr><th style="width:60px;text-align:center">Mức</th><th>Loại xe</th><th>Ghi chú</th></tr></thead><tbody>${prioRows.map(r=>`<tr><td class="rank">${r.rank}</td><td>${r.xe}</td><td style="color:var(--text2)">${r.note}</td></tr>`).join("")}</tbody></table><div class="prio-note"> <strong>Mức 1 → 4:</strong> Được đi vào đường cấm, đường ngược chiều, vượt đèn đỏ<br> <strong>Mức 5 (xe tang):</strong> Phải tuân thủ luật giao thông bình thường</div>`},
+    {n:"3",html:`<strong>Ưu tiên xe ưu tiên</strong><table class="prio-table" style="margin-top:8px"><thead><tr><th style="width:60px;text-align:center">Mức</th><th>Loại xe</th><th>Ghi chú</th></tr></thead><tbody>${prioRows.map(r=>`<tr><td class="rank">${r.rank}</td><td>${r.xe}</td><td style="color:var(--text2)">${r.note}</td></tr>`).join("")}</tbody></table></div><div class="prio-note"> <strong>Mức 1 → 4:</strong> Được đi vào đường cấm, đường ngược chiều, vượt đèn đỏ<br> <strong>Mức 5 (xe tang):</strong> Phải tuân thủ luật giao thông bình thường</div>`},
     {n:"4",html:"<strong>Đường ưu tiên</strong> — Tuân thủ theo thứ tự: <strong>Người điều khiển giao thông → Đèn tín hiệu → Biển báo</strong><br><span style='color:var(--text2)'>Nếu không có cả 3 → đó là <strong>đường đồng cấp</strong> (áp dụng bước 5)</span>"},
     {n:"5",html:"<strong>Quyền ưu tiên bên phải</strong> — Trên đường đồng cấp: xe đến từ <strong>bên phải</strong> được ưu tiên đi trước"},
     {n:"6",html:"<strong>Xe rẽ trái / quay đầu</strong> — Phải nhường đường cho xe chạy ngược chiều đi thẳng hoặc rẽ phải<br><span style='color:var(--coral-text);font-weight:600'> Áp dụng mọi lúc mọi nơi — quy tắc độc lập, xét sau khi đã qua Bước 1→5</span>"},
@@ -740,7 +743,7 @@ function render(){
         d.notes.forEach((n,i)=>{
           const isLast = i===d.notes.length-1;
           if(isLast){
-            bodyHTML+=`<div class="note-item" style="padding:0;overflow:hidden;margin-bottom:0"><div style="padding:9px 12px;font-weight:500;font-size:13px;color:var(--text2)">${n}</div>${buildDistanceHTML().replace('<table class="speed-table" style="margin-top:10px">','<table class="speed-table" style="border-top:1px solid #90CAF9;border-radius:0">') }</div>`;
+            bodyHTML+=`<div class="note-item" style="padding:0;overflow:hidden;margin-bottom:0"><div style="padding:9px 12px;font-weight:500;font-size:13px;color:var(--text2)">${n}</div>${buildDistanceHTML().replace('<table class="speed-table" style="margin-top:10px">','<div class=\"table-scroll\"><table class="speed-table" style="border-top:1px solid #90CAF9;border-radius:0;min-width:320px">') }</div>`;
           } else {
             bodyHTML+=`<div class="note-item" style="margin-bottom:8px">${n}</div>`;
           }
