@@ -8,6 +8,8 @@
 <meta property="og:description" content="22 mẹo làm bài · Made by Bap">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bap47.github.io/lythuyetlaixe">
+<meta property="og:image" content="https://bap47.github.io/lythuyetlaixe/thumbnail.png">
+<meta name="twitter:image" content="https://bap47.github.io/lythuyetlaixe/thumbnail.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mẹo thi lý thuyết bằng B">
 <meta name="twitter:description" content="22 mẹo làm bài · Made by Bap">
@@ -48,9 +50,17 @@
   .progress-count{font-size:13px;font-weight:600;color:var(--blue-head);white-space:nowrap}
 
   .filter-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
-  .filter-btn{padding:7px 16px;border-radius:20px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);font-size:13px;font-family:inherit;cursor:pointer;transition:all .15s;font-weight:500}
+  .filter-btn{padding:7px 16px;border-radius:20px;border:2px solid var(--border2);background:var(--surface);color:var(--text2);font-size:13px;font-family:inherit;cursor:pointer;transition:all .15s;font-weight:600}
   .filter-btn:hover{background:var(--surface2)}
-  .filter-btn.active{background:var(--blue-head);border-color:var(--blue-head);color:#fff}
+  .filter-btn.active{background:var(--blue-head);border-color:var(--blue-head);color:#fff;box-shadow:0 2px 8px rgba(10,56,128,0.35)}
+  .filter-btn.btn-chon:hover{background:#E1F5EE;color:#085041;border-color:#5DCAA5}
+  .filter-btn.btn-chon.active{background:#1D9E75;border-color:#1D9E75;color:#fff}
+  .filter-btn.btn-loai:hover{background:#FCEBEB;color:#A32D2D;border-color:#F09595}
+  .filter-btn.btn-loai.active{background:#E24B4A;border-color:#E24B4A;color:#fff}
+  .filter-btn.btn-so:hover{background:#EEEDFE;color:#3C3489;border-color:#AFA9EC}
+  .filter-btn.btn-so.active{background:#7F77DD;border-color:#7F77DD;color:#fff}
+  .filter-btn.btn-luuy:hover{background:#FAEEDA;color:#854F0B;border-color:#EF9F27}
+  .filter-btn.btn-luuy.active{background:#BA7517;border-color:#BA7517;color:#fff}
   .filter-btn.btn-sahinh:hover{background:#E8EAF6;color:#283593;border-color:#7986CB}
   .filter-btn.btn-sahinh.active{background:#3949AB;border-color:#3949AB;color:#fff}
   .filter-btn.btn-bienbao:hover{background:#E0F2F1;color:#004D40;border-color:#4DB6AC}
@@ -104,8 +114,9 @@
   .speed-table tr:nth-child(even) td{background:#F0F8FF}
 
   .done-btn{margin-top:1rem;padding:8px 18px;border-radius:20px;border:1px solid var(--border2);background:transparent;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;color:var(--text2);transition:all .15s}
-  .done-btn:hover{background:#E8F5E9;color:#1B5E20;border-color:#2E7D32}
+  .done-btn:hover{background:var(--surface2);color:var(--text2);border-color:var(--border2)}
   .card.done .done-btn{background:#E8F5E9;color:#1B5E20;border-color:#2E7D32}
+  .card.done .done-btn:hover{background:#C8E6C9;color:#1B5E20;border-color:#2E7D32}
 
   /* Bảng liên đới xe – biển báo */
   .sign-section{margin-top:10px}
@@ -176,10 +187,10 @@
   </div>
   <div class="filter-wrap">
     <button class="filter-btn active" onclick="setFilter('all',this)">Tất cả</button>
-    <button class="filter-btn" onclick="setFilter('chon',this)">Cách chọn</button>
-    <button class="filter-btn" onclick="setFilter('loai',this)">Cách loại</button>
-    <button class="filter-btn" onclick="setFilter('so',this)">Câu có số</button>
-    <button class="filter-btn" onclick="setFilter('luuy',this)">Lưu ý</button>
+    <button class="filter-btn btn-chon" onclick="setFilter('chon',this)">Cách chọn</button>
+    <button class="filter-btn btn-loai" onclick="setFilter('loai',this)">Cách loại</button>
+    <button class="filter-btn btn-so" onclick="setFilter('so',this)">Câu có số</button>
+    <button class="filter-btn btn-luuy" onclick="setFilter('luuy',this)">Lưu ý</button>
     <button class="filter-btn btn-sahinh" onclick="setFilter('sahinh',this)">Sa hình</button>
     <button class="filter-btn btn-bienbao" onclick="setFilter('bienbao',this)">Biển báo</button>
     <button class="filter-btn btn-caurao" onclick="setFilter('caurao',this)">Cấu tạo</button>
@@ -187,7 +198,7 @@
   <div class="cards" id="cards"></div>
 </main>
 
-<footer>Tài liệu ôn thi lý thuyết bằng lái xe B tự động<br><span style="font-size:11px;margin-top:4px;display:block;opacity:0.7">Made by Bap</span></footer>
+<footer>Tài liệu ôn thi lý thuyết bằng lái xe B<br><span style="font-size:11px;margin-top:4px;display:block;opacity:0.7">Made by Bap</span></footer>
 
 <script>
 const data=[
